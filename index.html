@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Javascript basics with JSON</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/32f374c92f.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./css/mobile.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript basics with JSON</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/32f374c92f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./scripts/app.js" defer></script>
+    <link rel="stylesheet" href="./css/mobile.css" />
     <link
       rel="stylesheet"
       href="./css/tablet.css"
@@ -17,38 +24,46 @@
     <link
       rel="stylesheet"
       href="./css/desktop.css"
-      media="screen and (min-width:1096px)"
+      media="screen and (min-width:1025px)"
     />
-</head>
-<body>
-  <main>
-    <header>
-      <span><i class="fas fa-dog"></i></span>
-      <h1>The Can Store</h1>
-      <span><i class="fas fa-bone"></i></span>
-    </header>
-    <section class="category-search">
-      <form action="" method="post">
-        <label for="category" class="category">Choose a category:</label>
-        <select name="category-options" id="category">
-          <option value="all" selected>All</option>
-          <option value="vegetables">Vegetables</option>
-          <option value="meat" >Meat</option>
-          <option value="soup" >Soup</option>
-        </select>
-        <label for="search-term" class="search-term">Enter search term</label>
-        <input type="text" name="search-term" id="search-term">
-        <button type="submit">Filter results</button>
-      </form>
-    </section>
-    <section class="product-catalog" id="catalog">
-    </section>
-    <footer class="social">
-      <div class="social-icon"><i class="fab fa-twitter"></i></div>
-      <div class="social-icon"><i class="fab fa-linkedin"></i></div>
-      <div class="social-icon"><i class="fab fa-github"></i></div>
-    </footer>
-  </main>
-  <script src="./scripts/app.js"></script>
-</body>
+  </head>
+  <body>
+    <main>
+      <header>
+        <span><i class="fas fa-dog"></i></span>
+        <h1>The Can Store</h1>
+        <span><i class="fas fa-bone"></i></span>
+      </header>
+      <section class="category-search">
+        <form action="" method="post">
+          <ul>
+            <li>
+              <label for="category" class="category">Choose a category:</label>
+            </li>
+            <li>
+              <select name="category-options" id="category">
+                <option value="all" selected>All</option>
+                <option value="vegetables">Vegetables</option>
+                <option value="meat">Meat</option>
+                <option value="soup">Soup</option>
+              </select>
+            </li>
+            <li>
+              <label for="search-term" class="search-term"
+                >Enter search term</label
+              >
+            </li>
+            <li><input type="text" name="search-term" id="search-term" /></li>
+            <li><button type="submit">Filter results</button></li>
+          </ul>
+        </form>
+      </section>
+      <section class="product-catalog" id="catalog"></section>
+      <footer class="social">
+        <div class="social-icon"><i class="fab fa-twitter"></i></div>
+        <div class="social-icon"><i class="fab fa-linkedin"></i></div>
+        <div class="social-icon"><i class="fab fa-github"></i></div>
+      </footer>
+    </main>
+  </body>
 </html>

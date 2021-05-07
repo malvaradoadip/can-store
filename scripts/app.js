@@ -1,7 +1,8 @@
 
 async function initialize() {
     let categorySelection = document.querySelector("#category");
-    let searchText = document.querySelector("#search-term");
+    let searchTextInput = document.querySelector("#search-term");
+    
     let searchBtn = document.querySelector("button");
     let productList = [];
     try {
@@ -13,24 +14,32 @@ async function initialize() {
     }
     searchBtn.addEventListener('click', (evt) => {
         evt.preventDefault();
-        getProducts(productList, categorySelection.value);
+        let searchText = searchTextInput.value.trim();
+        getProducts(productList, categorySelection.value, searchText);
     });
 }
-function getProducts(products, category){
+function getProducts(products, category, queryString) {
     catalogGrid = document.querySelector('#catalog');
     let filteredProducts = [];
     if(category !== "all"){
-        filteredProducts = filterItems(products, category);
+        filteredProducts = filterItemsByCategory(products, category, queryString);
     }
     else {
-        filteredProducts = products;
+        filteredProducts = filterItemsByText(products, queryString);
     }     
     updateDisplay(filteredProducts);
 }
-function filterItems(arr, query) {
+
+function filterItemsByCategory(arr, category, queryString) {
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
-    return arr.filter(elem => elem.type.indexOf(query) !== -1);
-}
+    let prefilter = arr.filter(elem => elem.type.indexOf(category) !== -1);
+    return prefilter.filter(item => item.name.indexOf(queryString) !== -1);
+};
+function filterItemsByText(arr, queryString) {
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
+    return arr.filter(item => item.name.indexOf(queryString) !== -1);
+};
+
 
 
 function updateDisplay(filteredProducts) {
