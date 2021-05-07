@@ -3,17 +3,51 @@ async function initialize() {
     let categorySelection = document.querySelector("#category");
     let searchText = document.querySelector("#search-term");
     let searchBtn = document.querySelector("button");
+    let productList = [];
+    try {
+        let productJson = await fetch('/data/products.json');
+        productList = await productJson.json();
+        initializeDisplay(productList);
+    } catch (error) {
+        console.log(`Error fetching data:`, error);
+    }
     searchBtn.addEventListener('click', (evt) => {
         evt.preventDefault();
-        console.log('Hi');
+        getProducts(productList, categorySelection.value);
     });
-    let productJson = await fetch('/data/products.json');
-    let productList = await productJson.json();
-    console.log(productList);
-    updateDisplay(productList);
 }
-function updateDisplay(products) {
+function getProducts(products, category){
+    catalogGrid = document.querySelector('#catalog');
+    let filteredProducts = [];
+    if(category !== "all"){
+        filteredProducts = filterItems(products, category);
+    }
+    else {
+        filteredProducts = products;
+    }     
+    updateDisplay(filteredProducts);
+}
+function filterItems(arr, query) {
+    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
+    return arr.filter(elem => elem.type.indexOf(query) !== -1);
+}
+
+
+function updateDisplay(filteredProducts) {
     catalogGrid = document.querySelector("#catalog");
+    listOfItems = catalogGrid.querySelectorAll('.article-container')
+    arrayOfCurrentItems = [...listOfItems]
+    arrayOfCurrentItems.forEach(container => {
+        container.remove();
+    });
+    filteredProducts.forEach(item => {
+        createArticle(item);
+    });
+}
+
+function initializeDisplay(products) {
+    catalogGrid = document.querySelector("#catalog");
+    
     products.forEach(item => {
         createArticle(item);
     });
