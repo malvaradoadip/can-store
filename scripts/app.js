@@ -6,7 +6,7 @@ async function initialize() {
     let searchBtn = document.querySelector("button");
     let productList = [];
     try {
-        let productJson = await fetch('/data/products.json');
+        let productJson = await fetch('/data/product.json');
         productList = await productJson.json();
         initializeDisplay(productList);
     } catch (error) {
